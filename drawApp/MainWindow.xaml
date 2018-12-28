@@ -1,0 +1,197 @@
+﻿<Window x:Class="drawApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:drawApp"
+        mc:Ignorable="d"
+        Title="drawApp" Height="720" Width="1280" MinWidth="1280" MinHeight="720" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#FFF0F0F0" Grid.Row="1" Grid.ColumnSpan="8"></Border>
+        <Border Background="#FFE1E1E1" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="2"></Border>
+        <Border Background="#FFF0F0F0" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="8"></Border>
+        <Border Background="#338CAAD2" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6"></Border>
+
+        <Menu Height="20" Name="menu" VerticalAlignment="Top" Grid.Row="0" Grid.ColumnSpan="8" FontSize="16" Background="#FFE6E6E6">
+            <MenuItem Header="File" FontSize="14" >
+                <MenuItem Name="btSave" Header="Save" FontSize="14" Click="btSave_Click" />
+                <MenuItem Name="btRead" Header="Read" FontSize="14" Click="btRead_Click" />
+                <MenuItem Header="Exit" Click="menuExit_Click" />
+            </MenuItem>
+            <MenuItem x:Name="menuEdit" Header="Edit" FontSize="14" >
+                <MenuItem x:Name="menuStop" Header="Stop Editing" Click="menuStop_Click" />
+                <MenuItem x:Name="menuClear" Header="Clear Canvas" Click="menuClear_Click" />
+                <MenuItem x:Name="menuCanvas" Header="Canvas Size" Click="menuCanvas_Click" />
+            </MenuItem>
+            <MenuItem Header="Help" FontSize="14" />
+            <MenuItem Header="About" FontSize="14" />
+        </Menu>
+
+        <Label x:Name="label" Content="Shape" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="16" Height="30" Margin="108,0" Width="57"/>
+        <Label x:Name="labe2" Content="Color" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Grid.Column="2" FontSize="16" Height="30" Margin="108,0" Width="57" Grid.ColumnSpan="2"/>
+        <Label x:Name="labe3" Content="Stroke Thickness" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Grid.Column="4" FontSize="16" Height="30" Margin="0,0,0,0" Width="150"/>
+        <Label x:Name="labe4" Content="Select" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="5" VerticalAlignment="Top" FontSize="16" Height="30" Margin="108,0" Width="57"/>
+
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btPoint" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="30" Height="30" FontSize="14" BorderThickness="0" Click="btPoint_Click" Background="#FFEBEBEB">
+                <Ellipse Width="4" Height="4" Stroke="Black" Fill="Black"/>
+            </Button>
+            <Button x:Name="btCircle" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="30" Height="30" FontSize="14" BorderThickness="0" Click="btCircle_Click" Background="#FFEBEBEB">
+                <Ellipse Width="20" Height="20" Stroke="Black"/>
+            </Button>
+            <Button x:Name="btPolyline" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="30" Height="30" FontSize="14" BorderThickness="0" Click="btPolyline_Click" Background="#FFEBEBEB">
+                <Polyline Width="25" Height="25" Stroke="Black" Points="2,8,6,22,12,4,18,14,22,2"></Polyline>
+            </Button>
+            <Button x:Name="btPolylgon" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="30" Height="30" FontSize="14" BorderThickness="0" Click="btPolylgon_Click" Background="#FFEBEBEB">
+                <Polygon Width="25" Height="25" Stroke="Black" Points="2,2,2,8,8,8,8,22,22,22,16,2"/>
+            </Button>
+            <Button x:Name="btEllipse" Grid.Row="2" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="30" Height="30" FontSize="14" BorderThickness="0" Click="btEllipse_Click" Background="#FFEBEBEB">
+                <Ellipse Width="25" Height="15" Stroke="Black"/>
+            </Button>
+            <Button x:Name="btRectangle" Grid.Row="2" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="30" Height="30" FontSize="14" BorderThickness="0" Click="btRectangle_Click" Background="#FFEBEBEB">
+                <Rectangle Width="20" Height="15" Stroke="Black"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="125"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Name="colorbox" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Height="50" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="Black" Stroke="Black" StrokeThickness="0.5"/>
+            <WrapPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" Margin="0,0,0,0">
+                <Button Name="color1" Height="25" Width="25" Background="Black" Click="color1_Click" BorderBrush="{x:Null}" />
+                <Button Name="color2" Height="25" Width="25" Background="Gray" Click="color2_Click" BorderBrush="{x:Null}" />
+                <Button Name="color3" Height="25" Width="25" Background="SaddleBrown" Click="color3_Click" BorderBrush="{x:Null}" />
+                <Button Name="color4" Height="25" Width="25" Background="Red" Click="color4_Click" BorderBrush="{x:Null}" />
+                <Button Name="color5" Height="25" Width="25" Background="Orange" Click="color5_Click" BorderBrush="{x:Null}" />
+                <Button Name="color6" Height="25" Width="25" Background="Yellow" Click="color6_Click" BorderBrush="{x:Null}" />
+                <Button Name="color7" Height="25" Width="25" Background="GreenYellow" Click="color7_Click" BorderBrush="{x:Null}" />
+                <Button Name="color8" Height="25" Width="25" Background="Blue" Click="color8_Click" BorderBrush="{x:Null}" />
+                <Button Name="color9" Height="25" Width="25" Background="Purple" Click="color9_Click" BorderBrush="{x:Null}" />
+                <Button Name="color10" Height="25" Width="25" Background="LimeGreen" Click="color10_Click" BorderBrush="{x:Null}" />
+            </WrapPanel>
+            <Grid Grid.Row="0" Grid.RowSpan="4" VerticalAlignment="Center" Grid.Column="2" Grid.ColumnSpan="3" Margin="0,20,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="R:" Width="15" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="8"></Label>
+                <Slider Name="colorR" Grid.Column="1" IsSnapToTickEnabled="True" Maximum="255" Width="Auto" Grid.Row="0"  Background="#FFEBEBEB" ValueChanged="colorR_ValueChanged" />
+                <Label Content="G:" Width="15" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" FontSize="8"></Label>
+                <Slider Name="colorG" Grid.Column="1" IsSnapToTickEnabled="True" Maximum="255" Width="Auto" Grid.Row="1" Background="#FFEBEBEB" ValueChanged="colorG_ValueChanged"  />
+                <Label Content="B:" Width="15" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" FontSize="8"></Label>
+                <Slider Name="colorB" Grid.Column="1" IsSnapToTickEnabled="True" Maximum="255" Width="Auto" Grid.Row="2" Background="#FFEBEBEB" ValueChanged="colorB_ValueChanged"  />
+
+                <Label Name="Rvalue" Grid.Row="0" Grid.Column="3" Content="{Binding ElementName=colorR,Path=Value}" Width="25" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="8"></Label>
+                <Label Name="Gvalue" Grid.Row="1" Grid.Column="3" Content="{Binding ElementName=colorG,Path=Value}" Width="25" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="8" ></Label>
+                <Label Name="Bvalue" Grid.Row="2" Grid.Column="3" Content="{Binding ElementName=colorB,Path=Value}" Width="25" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="8" ></Label>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Name="thickness1" Grid.Row="1" Width="180" Click="thickness1_Click" BorderBrush="{x:Null}" Background="#FFEBEBEB" >
+                <Rectangle Width="180" Stroke="Black" StrokeThickness="1"></Rectangle>
+            </Button>
+            <Button Name="thickness2" Grid.Row="2" Width="180" BorderBrush="{x:Null}" Click="thickness2_Click" Background="#FFEBEBEB" >
+                <Rectangle Width="180" Stroke="Black" StrokeThickness="2"></Rectangle>
+            </Button>
+            <Button Name="thickness3" Grid.Row="3" Width="180" BorderBrush="{x:Null}" Click="thickness3_Click" Background="#FFEBEBEB" >
+                <Rectangle Width="180" Stroke="Black" StrokeThickness="3"/>
+            </Button>
+            <Button Name="thickness4" Grid.Row="4" Width="180" BorderBrush="{x:Null}" Click="thickness4_Click" Background="#FFEBEBEB" >
+                <Rectangle Width="180" Stroke="Black" StrokeThickness="4"></Rectangle>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btSelect" MaxWidth="80" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" BorderBrush="#FFC8C8C8" Background="#FFEBEBEB" Click="btSelect_Click">
+                <Rectangle Height="35" Width="60" StrokeDashArray="2,1" StrokeThickness="2" Stroke="Cyan"></Rectangle>
+            </Button>
+            <Button Name="btDelete" Content="Delete" FontSize="12" Grid.Row="1" Grid.Column="3" MaxWidth="80" Height="20" BorderBrush="{x:Null}" Click="btDelete_Click"></Button>
+            <Button Name="btCancel" Content="Cancel" FontSize="12" Grid.Row="2" Grid.Column="3" MaxWidth="80" Height="20" BorderBrush="{x:Null}" Click="btCancel_Click"></Button>
+        </Grid>
+
+        <Button x:Name="btClear" Content="Clear" Grid.Row="1" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="74" FontSize="14" Click="btClear_Click" Background="#FFD7D7D7" BorderBrush="{x:Null}" Margin="8,35"/>
+        <Button x:Name="btShow" Content="ShowInfo" Grid.Row="1" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="74" FontSize="14" Click="btShow_Click" BorderBrush="{x:Null}" Margin="8,35"/>
+
+        <ListBox x:Name="lbInfo" Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="2" Height="Auto" BorderThickness="0" Background="{x:Null}" VerticalAlignment="Top"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="6" Height="Auto" Width="Auto">
+            <Canvas x:Name="drawCanvas" Height="600" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Grid.Row="2"  Width="1200" Grid.ColumnSpan="5" Background="White" Grid.RowSpan="3" MouseMove="Canvas_MouseMove" MouseDown="drawCanvas_MouseDown" MouseUp="drawCanvas_MouseUp"/>
+        </ScrollViewer>
+
+        <TextBlock Name="tbPosition" HorizontalAlignment="Center" TextAlignment="Center" Grid.Row="3" Grid.Column="0" Text="" />
+        <TextBlock Name="tbCanvas" HorizontalAlignment="Center" TextAlignment="Center" Grid.Row="3" Grid.Column="1" Text="" />
+        <TextBlock Name="tbThick" HorizontalAlignment="Center" TextAlignment="Center" Grid.Row="3" Grid.Column="2" Text="" />
+        <TextBlock Name="tbStatus" HorizontalAlignment="Left" TextAlignment="Center" Grid.Row="3" Grid.Column="3" Text="" />
+    </Grid>
+</Window>
